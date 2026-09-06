@@ -1,0 +1,117 @@
+╔══════════════════════════════════════════════════════════════════╗
+║         ClimateIQ v5 — Complete Setup Guide                     ║
+╚══════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  STEP 1 — CSV ko Database mein Convert Karo (Sirf Ek Baar)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. CMD (Command Prompt) kholo
+     → Win + R dabao → "cmd" likho → Enter
+
+  2. Project folder mein jao:
+     > D:
+     > cd Desktop\ClimateIQ_v5
+
+  3. CSV convert karo:
+     > python scripts\csv_to_sqlite.py "apni_csv_ka_path.csv"
+
+     Example:
+     > python scripts\csv_to_sqlite.py "D:\Desktop\ClimateIQ_v5\lexical_processed_25_lakh_rule_based.csv"
+
+  4. Jab "Database ready" dikhe — conversion complete!
+     File ban jayegi:  database\climate_data.db
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  STEP 2 — Desktop Application Banao (.exe) — Sirf Ek Baar
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Option A — BUILD.bat se (Asaan)
+  --------------------------------
+  BUILD.bat pe double-click karo
+  (ClimateIQ_v5 folder ke andar hai)
+
+  Option B — CMD se
+  ------------------
+  > D:
+  > cd Desktop\ClimateIQ_v5
+  > python -m PyInstaller ClimateIQ.spec --noconfirm
+
+  Build hone ke baad:
+    → dist\ClimateIQ\ClimateIQ.exe  ←  yeh hai aapka app
+    → Desktop pe ClimateIQ icon ban jayega
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  STEP 3 — Application Chalao
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Option A — Desktop Icon
+  ------------------------
+  Desktop pe "ClimateIQ" icon pe double-click karo
+
+  Option B — Seedha Python se (Development mode)
+  -----------------------------------------------
+  > D:
+  > cd Desktop\ClimateIQ_v5
+  > python main.py
+
+  Option C — EXE seedha chalao
+  ------------------------------
+  dist\ClimateIQ\ClimateIQ.exe  pe double-click karo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Application Use Karna
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. App khulne pe database auto-connect hoga (green tick dikhe)
+  2. Left side se City select karo
+  3. Date range select karo
+  4. "Run Analysis" click karo
+  5. Charts aur stats dekhne ke baad:
+     → "Export PDF" — report save karo
+     → "Reset Dashboard" — naya analysis karo
+     → Reset ke baad dobara city/date choose karke analysis karo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Folder Structure
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ClimateIQ_v5\
+  ├── main.py              ← app entry point
+  ├── BUILD.bat            ← .exe banane ka script
+  ├── CREATE_SHORTCUT.bat  ← sirf shortcut banana
+  ├── ClimateIQ.spec       ← PyInstaller config
+  ├── climateiq.ico        ← app icon
+  ├── SETUP_GUIDE.txt      ← yeh file
+  ├── requirements.txt     ← Python packages
+  ├── core\
+  │   ├── db_manager.py    ← SQLite connection
+  │   ├── chart_engine.py  ← charts
+  │   ├── pdf_reporter.py  ← PDF export
+  │   └── ai_explainer.py  ← AI explanations
+  ├── ui\
+  │   ├── main_window.py   ← main GUI
+  │   └── widgets.py       ← UI components
+  ├── database\
+  │   └── climate_data.db  ← aapka data (Step 1 mein banta hai)
+  ├── scripts\
+  │   └── csv_to_sqlite.py ← CSV converter
+  └── dist\ClimateIQ\
+      └── ClimateIQ.exe    ← final app (Step 2 mein banta hai)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Common Errors aur Solutions
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ❌ "No module named 'core.data_manager'"
+     → Purani file hai. Naye wale se replace karo.
+
+  ❌ "Database not found"
+     → Step 1 karo — CSV convert karo pehle.
+
+  ❌ "'pyinstaller' is not recognized"
+     → python -m PyInstaller use karo (BUILD.bat mein already hai).
+
+  ❌ App reset ke baad band ho jata tha
+     → Is version mein fix ho gaya hai.
+

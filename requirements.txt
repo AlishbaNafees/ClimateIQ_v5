@@ -1,0 +1,24 @@
+# ClimateIQ v5 — Python dependencies
+# Install with:  pip install -r requirements.txt
+
+# GUI framework
+PyQt6>=6.5.0
+
+# Data science
+pandas>=2.0.0
+numpy>=1.25.0
+
+# Sentiment analysis (VADER — used in chart_engine / ai_explainer)
+vaderSentiment>=3.3.2
+
+# Visualisation
+matplotlib>=3.7.0
+
+# PDF generation
+reportlab>=4.0.0
+
+# AI explanations (optional — needed for PDF + AI export)
+anthropic>=0.20.0
+
+# SQLite is included in Python's standard library — no extra install needed.
+# Minimum Python version: 3.10
