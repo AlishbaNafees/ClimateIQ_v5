@@ -1,117 +1,399 @@
-╔══════════════════════════════════════════════════════════════════╗
-║         ClimateIQ v5 — Complete Setup Guide                     ║
-╚══════════════════════════════════════════════════════════════════╝
+# ClimateIQ v5 — Complete Setup Guide
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  STEP 1 — CSV ko Database mein Convert Karo (Sirf Ek Baar)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This guide explains how to set up ClimateIQ v5, prepare the SQLite database, build the Windows application, and run the project.
 
-  1. CMD (Command Prompt) kholo
-     → Win + R dabao → "cmd" likho → Enter
+The setup only needs to be done once for the database and standalone application. After that, you can launch the application directly whenever you need it.
 
-  2. Project folder mein jao:
-     > D:
-     > cd Desktop\ClimateIQ_v5
+---
 
-  3. CSV convert karo:
-     > python scripts\csv_to_sqlite.py "apni_csv_ka_path.csv"
+## 1. Convert the CSV Dataset to SQLite
 
-     Example:
-     > python scripts\csv_to_sqlite.py "D:\Desktop\ClimateIQ_v5\lexical_processed_25_lakh_rule_based.csv"
+This step is required when you are setting up the project for the first time or when you want to create a new database from a CSV dataset.
 
-  4. Jab "Database ready" dikhe — conversion complete!
-     File ban jayegi:  database\climate_data.db
+### Step 1.1 — Open Command Prompt
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  STEP 2 — Desktop Application Banao (.exe) — Sirf Ek Baar
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Press:
 
-  Option A — BUILD.bat se (Asaan)
-  --------------------------------
-  BUILD.bat pe double-click karo
-  (ClimateIQ_v5 folder ke andar hai)
+```text
+Win + R
+```
 
-  Option B — CMD se
-  ------------------
-  > D:
-  > cd Desktop\ClimateIQ_v5
-  > python -m PyInstaller ClimateIQ.spec --noconfirm
+Type:
 
-  Build hone ke baad:
-    → dist\ClimateIQ\ClimateIQ.exe  ←  yeh hai aapka app
-    → Desktop pe ClimateIQ icon ban jayega
+```text
+cmd
+```
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  STEP 3 — Application Chalao
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+and press **Enter**.
 
-  Option A — Desktop Icon
-  ------------------------
-  Desktop pe "ClimateIQ" icon pe double-click karo
+### Step 1.2 — Go to the Project Folder
 
-  Option B — Seedha Python se (Development mode)
-  -----------------------------------------------
-  > D:
-  > cd Desktop\ClimateIQ_v5
-  > python main.py
+Navigate to the ClimateIQ project directory.
 
-  Option C — EXE seedha chalao
-  ------------------------------
-  dist\ClimateIQ\ClimateIQ.exe  pe double-click karo
+For example:
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Application Use Karna
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```bat
+cd C:\Users\lenovo\Documents\ClimateIQ_v5
+```
 
-  1. App khulne pe database auto-connect hoga (green tick dikhe)
-  2. Left side se City select karo
-  3. Date range select karo
-  4. "Run Analysis" click karo
-  5. Charts aur stats dekhne ke baad:
-     → "Export PDF" — report save karo
-     → "Reset Dashboard" — naya analysis karo
-     → Reset ke baad dobara city/date choose karke analysis karo
+If your project is located somewhere else, replace the path with the actual project location.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Folder Structure
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+### Step 1.3 — Convert the CSV File
 
-  ClimateIQ_v5\
-  ├── main.py              ← app entry point
-  ├── BUILD.bat            ← .exe banane ka script
-  ├── CREATE_SHORTCUT.bat  ← sirf shortcut banana
-  ├── ClimateIQ.spec       ← PyInstaller config
-  ├── climateiq.ico        ← app icon
-  ├── SETUP_GUIDE.txt      ← yeh file
-  ├── requirements.txt     ← Python packages
-  ├── core\
-  │   ├── db_manager.py    ← SQLite connection
-  │   ├── chart_engine.py  ← charts
-  │   ├── pdf_reporter.py  ← PDF export
-  │   └── ai_explainer.py  ← AI explanations
-  ├── ui\
-  │   ├── main_window.py   ← main GUI
-  │   └── widgets.py       ← UI components
-  ├── database\
-  │   └── climate_data.db  ← aapka data (Step 1 mein banta hai)
-  ├── scripts\
-  │   └── csv_to_sqlite.py ← CSV converter
-  └── dist\ClimateIQ\
-      └── ClimateIQ.exe    ← final app (Step 2 mein banta hai)
+Run the CSV-to-SQLite conversion script:
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Common Errors aur Solutions
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```bat
+python scripts\csv_to_sqlite.py "path_to_your_csv_file.csv"
+```
 
-  ❌ "No module named 'core.data_manager'"
-     → Purani file hai. Naye wale se replace karo.
+For example:
 
-  ❌ "Database not found"
-     → Step 1 karo — CSV convert karo pehle.
+```bat
+python scripts\csv_to_sqlite.py "C:\Users\lenovo\Documents\ClimateIQ_v5\database\sample_tweets.csv"
+```
 
-  ❌ "'pyinstaller' is not recognized"
-     → python -m PyInstaller use karo (BUILD.bat mein already hai).
+If the conversion completes successfully, the database will be created at:
 
-  ❌ App reset ke baad band ho jata tha
-     → Is version mein fix ho gaya hai.
+```text
+database\climate_data.db
+```
 
+When you see a message indicating that the database is ready, this step is complete.
+
+> **Note:** You normally only need to perform this conversion once. If you replace the CSV dataset with a new one and want to use it in ClimateIQ, run the conversion script again.
+
+---
+
+## 2. Build the Windows Application
+
+ClimateIQ can be packaged as a standalone Windows application using PyInstaller.
+
+There are two ways to build the application.
+
+### Option A — Using BUILD.bat
+
+This is the easiest method.
+
+1. Open the `ClimateIQ_v5` project folder.
+2. Locate `BUILD.bat`.
+3. Double-click `BUILD.bat`.
+4. Wait for PyInstaller to finish creating the application.
+
+After a successful build, the standalone application will be available under:
+
+```text
+dist\ClimateIQ\
+```
+
+The main executable is:
+
+```text
+dist\ClimateIQ\ClimateIQ.exe
+```
+
+The database should also be available under:
+
+```text
+dist\ClimateIQ\database\climate_data.db
+```
+
+### Option B — Build from Command Prompt
+
+Open Command Prompt and move to the project directory:
+
+```bat
+cd C:\Users\lenovo\Documents\ClimateIQ_v5
+```
+
+Then run:
+
+```bat
+python -m PyInstaller ClimateIQ.spec --noconfirm
+```
+
+PyInstaller will create the standalone application in the `dist` directory.
+
+The resulting structure should include:
+
+```text
+dist\ClimateIQ\
+├── ClimateIQ.exe
+└── database\
+    └── climate_data.db
+```
+
+---
+
+## 3. Run ClimateIQ
+
+There are two ways to run the application.
+
+### Option A — Run from Python
+
+This is useful during development or when making changes to the source code.
+
+Open Command Prompt and run:
+
+```bat
+cd C:\Users\lenovo\Documents\ClimateIQ_v5
+```
+
+Then:
+
+```bat
+python main.py
+```
+
+The ClimateIQ desktop application should open.
+
+### Option B — Run the Standalone Application
+
+If you have already built the application, you do not need to run Python manually.
+
+Open:
+
+```text
+dist\ClimateIQ\
+```
+
+and double-click:
+
+```text
+ClimateIQ.exe
+```
+
+This launches the standalone version of ClimateIQ.
+
+---
+
+## 4. Using the Application
+
+Once ClimateIQ starts, the application connects to the local SQLite database and loads the available data.
+
+A typical analysis workflow is:
+
+1. Open ClimateIQ.
+2. Select a **City** from the available options.
+3. Select the required **Date Range**.
+4. Click **Run Analysis**.
+5. Review the sentiment statistics and generated charts.
+6. Use **Export PDF** if you want to save the analysis as a report.
+7. Use **Reset Dashboard** when you want to clear the current analysis and start another one.
+
+The exact data and available results depend on the dataset currently stored in the database.
+
+---
+
+## 5. Project Folder Structure
+
+After setup, the project should generally look like this:
+
+```text
+ClimateIQ_v5\
+│
+├── main.py
+├── BUILD.bat
+├── CREATE_SHORTCUT.bat
+├── ClimateIQ.spec
+├── climateiq.ico
+├── SETUP_GUIDE.txt
+├── requirements.txt
+│
+├── core\
+│   ├── db_manager.py
+│   ├── chart_engine.py
+│   ├── pdf_reporter.py
+│   └── ai_explainer.py
+│
+├── ui\
+│   ├── main_window.py
+│   └── widgets.py
+│
+├── database\
+│   ├── sample_tweets.csv
+│   └── climate_data.db
+│
+├── scripts\
+│   └── csv_to_sqlite.py
+│
+└── dist\
+    └── ClimateIQ\
+        ├── ClimateIQ.exe
+        └── database\
+            └── climate_data.db
+```
+
+### Important Files
+
+| File / Directory               | Purpose                                        |
+| ------------------------------ | ---------------------------------------------- |
+| `main.py`                      | Application entry point                        |
+| `BUILD.bat`                    | Builds the standalone Windows application      |
+| `CREATE_SHORTCUT.bat`          | Creates a desktop shortcut                     |
+| `ClimateIQ.spec`               | PyInstaller configuration                      |
+| `climateiq.ico`                | Application icon                               |
+| `SETUP_GUIDE.txt`              | Setup and usage instructions                   |
+| `requirements.txt`             | Required Python packages                       |
+| `core\db_manager.py`           | Handles SQLite database operations             |
+| `core\chart_engine.py`         | Generates charts and visualizations            |
+| `core\pdf_reporter.py`         | Handles PDF report generation                  |
+| `core\ai_explainer.py`         | Generates sentiment explanations and summaries |
+| `ui\main_window.py`            | Main application window and GUI logic          |
+| `ui\widgets.py`                | Custom interface components                    |
+| `database\sample_tweets.csv`   | Sample tweet dataset                           |
+| `database\climate_data.db`     | SQLite database used by the application        |
+| `scripts\csv_to_sqlite.py`     | Converts CSV data into SQLite                  |
+| `dist\ClimateIQ\ClimateIQ.exe` | Standalone Windows application                 |
+
+---
+
+## 6. Common Errors and Solutions
+
+### Error: `Database not found`
+
+If ClimateIQ cannot find the database, first make sure that the database has been created.
+
+Run:
+
+```bat
+python scripts\csv_to_sqlite.py "database\sample_tweets.csv"
+```
+
+Then check that this file exists:
+
+```text
+database\climate_data.db
+```
+
+For the standalone version, also check:
+
+```text
+dist\ClimateIQ\database\climate_data.db
+```
+
+---
+
+### Error: Data Does Not Load in the Standalone Application
+
+If the application opens but the data is not available, check the database location.
+
+The standalone application should have:
+
+```text
+dist\ClimateIQ\
+├── ClimateIQ.exe
+└── database\
+    └── climate_data.db
+```
+
+Make sure `climate_data.db` is actually present inside the `database` folder.
+
+---
+
+### Error: `'pyinstaller' is not recognized`
+
+If Windows does not recognize the `pyinstaller` command, use the Python module form instead:
+
+```bat
+python -m PyInstaller ClimateIQ.spec --noconfirm
+```
+
+This is also the command used by the recommended build process.
+
+If PyInstaller is not installed, install it with:
+
+```bat
+pip install pyinstaller
+```
+
+---
+
+### Error: Python Is Not Recognized
+
+If you receive an error indicating that `python` is not recognized, make sure Python 3.x is installed and added to the Windows PATH.
+
+You can check the installation with:
+
+```bat
+python --version
+```
+
+If Python is installed correctly, this command should display the installed Python version.
+
+---
+
+## 7. Quick Setup
+
+If Python and the required dependencies are already installed, the basic setup can be completed with these commands:
+
+```bat
+cd C:\Users\lenovo\Documents\ClimateIQ_v5
+
+pip install -r requirements.txt
+
+python scripts\csv_to_sqlite.py "database\sample_tweets.csv"
+
+python -m PyInstaller ClimateIQ.spec --noconfirm
+```
+
+After the build finishes, open:
+
+```text
+dist\ClimateIQ\ClimateIQ.exe
+```
+
+---
+
+## 8. Development vs. Standalone Use
+
+For development, testing, or modifying the source code, use:
+
+```bat
+python main.py
+```
+
+For normal use on a Windows machine where Python is not required, use:
+
+```text
+dist\ClimateIQ\ClimateIQ.exe
+```
+
+The standalone version is the recommended option when distributing ClimateIQ as a desktop application.
+
+---
+
+## 9. Before Distributing the Application
+
+Before sharing the standalone ClimateIQ package with another user, check that the following are present:
+
+```text
+dist\ClimateIQ\
+├── ClimateIQ.exe
+└── database\
+    └── climate_data.db
+```
+
+If the database is missing from the package, the application may open but will not be able to load the required dataset.
+
+It is also a good idea to test the executable on the target Windows machine before distribution.
+
+---
+
+## 10. Final Setup Checklist
+
+Use this checklist if you want to quickly verify that everything is ready:
+
+* [ ] Python 3.x is installed.
+* [ ] Project dependencies have been installed.
+* [ ] The CSV dataset is available.
+* [ ] `database\climate_data.db` has been created.
+* [ ] The application builds successfully with PyInstaller.
+* [ ] `dist\ClimateIQ\ClimateIQ.exe` exists.
+* [ ] `dist\ClimateIQ\database\climate_data.db` exists.
+* [ ] The standalone application starts successfully.
+* [ ] City and date filters work correctly.
+* [ ] **Run Analysis** produces results.
+* [ ] Charts and statistics are displayed.
+* [ ] **Export PDF** generates a report successfully.
+
+Once these checks are complete, ClimateIQ v5 is ready to use.
