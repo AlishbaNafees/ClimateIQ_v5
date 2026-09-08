@@ -8,6 +8,34 @@ Along with sentiment analysis, ClimateIQ includes data visualization and PDF rep
 
 ---
 
+## Application Preview
+
+### 1. Plain Dashboard & Welcome Screen
+![Plain Dashboard](assets/Plain_Dashboard.PNG)
+
+### 2. Header, KPIs & Key Insights
+![Header and KPIs](assets/Header.PNG)
+
+### 3. Sentiment Distribution & Emotion Breakdown
+![Sentiment and Emotion Analysis](assets/Donut_Emotion%20Chart.PNG)
+
+### 4. Topic & Weather Distribution
+![Topic and Weather Distribution](assets/Topic_Weather.PNG)
+
+### 5. Geographic Sentiment Comparison
+![Geographic Sentiment](assets/Geographic.PNG)
+
+### 6. Daily Tweet Activity & Word-Count Trend
+![Daily Tweet Activity](assets/Daily_tweet.PNG)
+
+### 7. VADER Sentiment Score Distribution
+![Score Distribution](assets/Temporal.PNG)
+
+### 8. Analysis Summary Table
+![Summary Table](assets/Summary.PNG)
+
+---
+
 ## Features
 
 ### Sentiment Analysis
